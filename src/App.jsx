@@ -3,9 +3,11 @@ import { defineElement } from '@lordicon/element'
 import lottie from 'lottie-web'
 import { FaAddressBook, FaBook, FaCode } from 'react-icons/fa'
 import { IoIosLink } from 'react-icons/io'
+import { Toaster, toast } from 'sonner'
 import ThemeToggle from './components/ThemeToggle'
 import {
   Tooltip,
+  TooltipArrow,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
@@ -67,9 +69,29 @@ function App() {
   }
   defineElement(lottie.loadAnimation)
 
+  const TooltipDemo = () => {
+    return (
+      <TooltipProvider>
+        <Tooltip delayDuration={0}>
+          <TooltipTrigger>
+            <div className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-100 px-4 py-2 font-bold text-indigo-500 dark:bg-indigo-500 dark:text-zinc-200">
+              <FaBook />
+              <span>{`I'm learning...`}</span>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent sideOffset={12}>
+            {`Spring Framework`}
+            <TooltipArrow className="dark:invert" />
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  }
+
   return (
     <section className="relative mx-auto min-h-screen max-w-3xl px-4 pb-8 pt-20">
       <ThemeToggle />
+      <Toaster position="bottom-right" richColors />
       <header className="flex flex-col items-center justify-center gap-8 text-center md:flex-row md:justify-normal md:text-left">
         <div className="relative h-32 w-32 overflow-hidden rounded-full bg-[#2c3645] shadow-2xl ring-8 ring-white dark:ring-[#171e2d] sm:block lg:h-40 lg:w-40">
           <img
@@ -84,20 +106,19 @@ function App() {
             I am a web developer passionate about the backend.
           </p>
           <div className="grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center">
-            <TooltipProvider className="col-span-1">
-              <Tooltip delayDuration={0}>
-                <TooltipTrigger>
-                  <button className="flex w-full items-center gap-2 rounded-lg bg-indigo-100 px-4 py-2 font-bold text-indigo-500 dark:bg-indigo-500 dark:text-zinc-200">
-                    <FaBook />
-                    <span>Learning</span>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Learning Spring Framework</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <button className="col-span-1 flex w-full items-center gap-2 rounded-lg bg-emerald-100 px-4 py-2 font-bold text-emerald-600 dark:bg-emerald-600 dark:text-zinc-200 md:w-fit">
+            <div className="col-span-1 hidden lg:flex">
+              <TooltipDemo />
+            </div>
+            <button
+              onClick={() =>
+                toast.info('Spring Framework 💻', { duration: 1500 })
+              }
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-100 px-4 py-2 font-bold text-indigo-500 dark:bg-indigo-500 dark:text-zinc-200 md:w-fit lg:hidden"
+            >
+              <FaBook />
+              <span>{`I'm learning...`}</span>
+            </button>
+            <button className="col-span-1 flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-100 px-4 py-2 font-bold text-emerald-600 dark:bg-emerald-600 dark:text-zinc-200 md:w-fit">
               <FaAddressBook />
               <span>Resume</span>
             </button>
@@ -177,15 +198,19 @@ function App() {
               </div>
               <div className="flex flex-col gap-2 lg:flex-row">
                 <a
-                  className="flex items-center justify-center gap-1 rounded-md bg-zinc-200 px-8 py-2 shadow-md shadow-zinc-300 dark:bg-[#0e121c] dark:text-zinc-200 dark:shadow-[#0a0d14]"
+                  className="linkButton"
                   href="https://linux-learner.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <span>Live</span>
                   <IoIosLink />
                 </a>
                 <a
-                  className="flex items-center justify-center gap-1 rounded-md bg-zinc-200 px-8 py-2 shadow-md shadow-zinc-300 dark:bg-[#0e121c] dark:text-zinc-200 dark:shadow-[#0a0d14]"
-                  href="https://linux-learner.vercel.app/"
+                  className="linkButton"
+                  href="https://github.com/cr1st1anhernandez/linux-learner"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <span>Code</span>
                   <FaCode />
@@ -214,7 +239,7 @@ function App() {
               </div>
               <div className="flex flex-col gap-2 lg:flex-row">
                 <a
-                  className="flex items-center justify-center gap-1 rounded-md bg-zinc-200 px-8 py-2 shadow-md shadow-zinc-300 dark:bg-[#0e121c] dark:text-zinc-200 dark:shadow-[#0a0d14]"
+                  className="linkButton"
                   target="_blank"
                   rel="noreferrer"
                   href="https://spotify-searcher-artist.vercel.app/"
@@ -222,10 +247,9 @@ function App() {
                   Live
                   <IoIosLink />
                 </a>
-
                 <a
-                  className="flex items-center justify-center gap-1 rounded-md bg-zinc-200 px-8 py-2 shadow-md shadow-zinc-300 dark:bg-[#0e121c] dark:text-zinc-200 dark:shadow-[#0a0d14]"
-                  href="https://linux-learner.vercel.app/"
+                  className="linkButton"
+                  href="https://github.com/cr1st1anhernandez/spotify-searcher-artist"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -240,21 +264,27 @@ function App() {
           <h3>Social</h3>
           <ul className="flex flex-wrap items-center gap-4">
             <a
-              href=""
+              href="https://github.com/cr1st1anhernandez"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center justify-center gap-2 text-gray-600"
             >
               <Icon icon="akar-icons:github" className="h-6 w-6" />
               <span className="tex-lg md:text-xl">Github</span>
             </a>
             <a
-              href=""
+              href="https://twitter.com/CR1ST1A13550102"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center justify-center gap-2 text-blue-400"
             >
               <Icon icon="akar-icons:twitter-fill" className="h-6 w-6" />
               <span className="tex-lg md:text-xl">Twitter</span>
             </a>
             <a
-              href=""
+              href="https://www.linkedin.com/in/cristian-neftali-hernandez-ramirez-b17742221/"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center justify-center gap-2 text-blue-600"
             >
               <Icon icon="akar-icons:linkedin-fill" className="h-6 w-6" />
