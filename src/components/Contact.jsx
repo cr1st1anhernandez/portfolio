@@ -13,20 +13,21 @@ const Contact = () => {
 
     if (!name) {
       newErrors.name = 'No se permiten campos vacíos'
-      return false
     }
 
     if (!email || !email.includes('@')) {
       newErrors.email = 'Por favor, introduce un correo electrónico válido'
-      return false
     }
 
     if (!message) {
       newErrors.message = 'No se permiten campos vacíos'
+    }
+    setErrors(newErrors)
+
+    if (!name || !email || !message) {
       return false
     }
 
-    setErrors(newErrors)
     return true
   }
   const form = useRef()
