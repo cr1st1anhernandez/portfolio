@@ -4,6 +4,7 @@ import lottie from 'lottie-web'
 import { FaAddressBook, FaBook, FaCode } from 'react-icons/fa'
 import { IoIosLink } from 'react-icons/io'
 import { Toaster, toast } from 'sonner'
+import Contact from './components/Contact'
 import ThemeToggle from './components/ThemeToggle'
 import {
   Tooltip,
@@ -180,7 +181,7 @@ function App() {
               alt="website for learn linux."
               className="image"
             />
-            <article className="flex w-full flex-col justify-center gap-4 md:w-1/3">
+            <article className="flex w-full flex-col gap-4 md:w-1/3">
               <header>
                 <h3>Linux Learner</h3>
                 <p>A website to learn linux for beginners.</p>
@@ -198,7 +199,7 @@ function App() {
               </div>
               <div className="flex flex-col gap-2 lg:flex-row">
                 <a
-                  className="linkButton"
+                  className="button"
                   href="https://linux-learner.vercel.app/"
                   target="_blank"
                   rel="noreferrer"
@@ -207,7 +208,7 @@ function App() {
                   <IoIosLink />
                 </a>
                 <a
-                  className="linkButton"
+                  className="button"
                   href="https://github.com/cr1st1anhernandez/linux-learner"
                   target="_blank"
                   rel="noreferrer"
@@ -224,7 +225,7 @@ function App() {
               alt="website for search artist in spotify."
               className="image"
             />
-            <article className="flex w-full flex-col justify-center gap-4 md:w-1/3">
+            <article className="flex w-full flex-col gap-4 md:w-1/3">
               <header>
                 <h3>Spotify Searcher</h3>
                 <p>A website for search artist information in spotify.</p>
@@ -239,7 +240,7 @@ function App() {
               </div>
               <div className="flex flex-col gap-2 lg:flex-row">
                 <a
-                  className="linkButton"
+                  className="button"
                   target="_blank"
                   rel="noreferrer"
                   href="https://spotify-searcher-artist.vercel.app/"
@@ -248,7 +249,7 @@ function App() {
                   <IoIosLink />
                 </a>
                 <a
-                  className="linkButton"
+                  className="button"
                   href="https://github.com/cr1st1anhernandez/spotify-searcher-artist"
                   target="_blank"
                   rel="noreferrer"
@@ -260,7 +261,7 @@ function App() {
             </article>
           </div>
         </article>
-        <article className="card col-span-3 md:col-span-3">
+        <article className="card col-span-3">
           <h3>Social</h3>
           <ul className="flex flex-wrap items-center gap-4">
             <a
@@ -292,7 +293,10 @@ function App() {
             </a>
           </ul>
         </article>
-        <footer></footer>
+        <footer className="card col-span-3">
+          <h3>Contact</h3>
+          <Contact />
+        </footer>
       </section>
     </section>
   )
